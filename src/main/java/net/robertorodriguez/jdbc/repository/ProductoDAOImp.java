@@ -18,7 +18,14 @@ public class ProductoDAOImp implements Repository<Producto> {
 		List<Producto> productos = new ArrayList<>();
 		
 		try (Statement statement = getConnection().createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM productos");) {
+				ResultSet resultSet = 
+						statement.executeQuery(
+								"SELECT * "
+								+ "FROM productos as p "
+								+ "INNER JOIN marcas as mr ON (p.marca_id = mr.id "
+								+ "INNER JOIN medidas as md ON (p.medida_id = md.id)"
+								);
+			) {
 			
 			while (resultSet.next())
 				productos.add( createProducto(resultSet) );

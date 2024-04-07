@@ -73,6 +73,11 @@ UPDATE ldlc.productos SET cb = CAST(barcode as SIGNED INTEGER)
 
 - Se elimina `barcode` y se renombre `cb` como `barcode`.
 
+### Backup
+
+- ldlc_2004071556.sql
+  - Marcados campos de marcar y medidas como únicos.
+
 ---
 
 ## Entidades

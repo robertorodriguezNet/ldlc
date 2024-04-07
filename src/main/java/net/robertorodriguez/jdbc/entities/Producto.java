@@ -5,9 +5,9 @@ public class Producto {
 	private Long id;
 	private Long barcode;
 	private String denominacion;
-	private int marca_id;
+	private Marca marca;
 	private int unidades;
-	private int medida_id;
+	private Medida medida;
 	private double cantidad;
 	
 	public Producto() {
