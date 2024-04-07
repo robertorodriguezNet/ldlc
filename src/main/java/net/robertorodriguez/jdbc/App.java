@@ -14,13 +14,17 @@ public class App {
 
 	public static void main(String[] args) {
 
-		try (Connection connection = DriverManager.getConnection(URL, USER, PASS);
-				Statement statement = connection.createStatement();) {
+		try (
+				Connection connection = DriverManager.getConnection(URL, USER, PASS);
+				Statement statement = connection.createStatement();
+			) {
 
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM productos");
 
 			while (resultSet.next()) {
-				System.out.println(String.format("%14s", resultSet.getString("barcode")) + " "
+				System.out.println(
+						String.format("%14s", resultSet.getString("barcode")) 
+						+ " "
 						+ resultSet.getString("denominacion"));
 			}
 			
