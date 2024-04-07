@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.robertorodriguez.jdbc.entities.Marca;
+import net.robertorodriguez.jdbc.entities.Medida;
 import net.robertorodriguez.jdbc.entities.Producto;
 import net.robertorodriguez.jdbc.util.DbConnection;
 
@@ -73,7 +75,8 @@ public class ProductoDAOImp implements Repository<Producto> {
 				+ "WHERE id=?";
 		
 		try ( PreparedStatement statement = getConnection().prepareStatement(sql)
-		){			
+		){	
+			/*
 			statement.setLong(1, p.getBarcode());
 			statement.setString(2, p.getDenominacion());
 			statement.setInt(3, p.getMarca_id());
@@ -85,6 +88,7 @@ public class ProductoDAOImp implements Repository<Producto> {
 				statement.setLong(7, p.getId());
 			
 			statement.executeUpdate();
+			*/
 			
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -111,15 +115,20 @@ public class ProductoDAOImp implements Repository<Producto> {
 	}
 	
 	private Producto createProducto(ResultSet rs) throws SQLException {
+		
+		Marca marca = new Marca();
+		Medida medida = new Medida();
+		
 		return new Producto(
 			rs.getLong("id"),
 			rs.getLong("barcode"),
 			rs.getString("denominacion"),
-			rs.getInt("marca_id"),
+			marca,
 			rs.getInt("unidades"),
-			rs.getInt("medida_id"),
+			medida,
 			rs.getDouble("cantidad")				
 		);
+		
 	}
 
 }

@@ -14,9 +14,9 @@ public class Producto {
 		this.id = 0L;
 		this.barcode = 0L;
 		this.denominacion = "";
-		this.marca_id = 0;
+		this.marca = null;
 		this.unidades = 0;
-		this.medida_id = 0;
+		this.medida = null;
 		this.cantidad = 0;		
 	}
 
@@ -24,17 +24,17 @@ public class Producto {
 			Long id, 
 			Long barcode, 
 			String denominacion, 
-			int marca, 
+			Marca marca, 
 			int unidades, 
-			int medida, 
+			Medida medida, 
 			double cantidad
 		) {
 		this.id = id;
 		this.barcode = barcode;
 		this.denominacion = denominacion;
-		this.marca_id = marca;
+		this.marca = marca;
 		this.unidades = unidades;
-		this.medida_id = medida;
+		this.medida = medida;
 		this.cantidad = cantidad;
 	}
 
@@ -50,16 +50,16 @@ public class Producto {
 		return denominacion;
 	}
 
-	public int getMarca_id() {
-		return marca_id;
+	public String getMarca() {
+		return marca.getName();
 	}
 
 	public int getUnidades() {
 		return unidades;
 	}
 
-	public int getMedida_id() {
-		return medida_id;
+	public String getMedida() {
+		return medida.getAbbreviation();
 	}
 
 	public double getCantidad() {
@@ -78,16 +78,8 @@ public class Producto {
 		this.denominacion = denominacion;
 	}
 
-	public void setMarca_id(int marca_id) {
-		this.marca_id = marca_id;
-	}
-
 	public void setUnidades(int unidades) {
 		this.unidades = unidades;
-	}
-
-	public void setMedida_id(int medida_id) {
-		this.medida_id = medida_id;
 	}
 
 	public void setCantidad(double cantidad) {
