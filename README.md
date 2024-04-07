@@ -55,3 +55,42 @@ El archivo **pom.xml** creado por *Eclipse* no genera las `properties`.
 
 </project> 
 ```
+
+## BBDD
+
+### Código de barras
+
+Se ha modificado el tipo de dato para el código de barras, que ha pasado de ser **VARCHAR** a **BIGINT(13)**.
+
+#### Consulta para hacer el cambio
+
+- Se ha creado una columna cd de tipo `BIGINT(13)`.
+- Se ejecuta la consulta:
+  
+```sql
+UPDATE ldlc.productos SET cb = CAST(barcode as SIGNED INTEGER)
+```
+
+- Se elimina `barcode` y se renombre `cb` como `barcode`.
+
+---
+
+## Entidades
+
+Una entidad nunca debe devolver una instancia nula.
+
+## Producto.java
+
+Valores por defecto para la clase `Producto.java` al pasar el constructor vacío.
+
+```java
+  public Producto() {
+    this.id = 0L;
+    this.barcode = 0L;
+    this.denominacion = "";
+    this.marca_id = 0;
+    this.unidades = 0;
+    this.medida_id = 0;
+    this.cantidad = 0;
+  }
+```

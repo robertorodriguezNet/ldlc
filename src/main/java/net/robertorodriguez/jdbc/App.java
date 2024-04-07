@@ -2,28 +2,22 @@ package net.robertorodriguez.jdbc;
 
 import java.sql.*;
 
+import net.robertorodriguez.jdbc.entities.Producto;
+import net.robertorodriguez.jdbc.repository.ProductoDAOImp;
+import net.robertorodriguez.jdbc.repository.Repository;
 import net.robertorodriguez.jdbc.util.DbConnection;
 
 public class App {
 
 	public static void main(String[] args) {
+		
+		try (Connection connection = DbConnection.getConnection()) {
 
-		try (
-				Connection connection = DbConnection.getConnection();
-				Statement statement = connection.createStatement();
-			) {
-
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM productos");
-
-			while (resultSet.next()) {
-				System.out.println(
-						String.format("%14s", resultSet.getString("barcode")) 
-						+ " "
-						+ resultSet.getString("denominacion"));
-			}
+			Repository<Producto> productos = new ProductoDAOImp();
+//			productos.findAll().forEach(System.out::println);
 			
-			resultSet.close();
-
+//			System.out.println(productos.findById(56L));
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
