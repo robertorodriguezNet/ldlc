@@ -1,21 +1,15 @@
 package net.robertorodriguez.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
+import net.robertorodriguez.jdbc.util.DbConnection;
 
 public class App {
-
-	private static final String URL = "jdbc:mysql://localhost:3306/ldlc";
-	private static final String USER = "roberto";
-	private static final String PASS = "0wq79s";
 
 	public static void main(String[] args) {
 
 		try (
-				Connection connection = DriverManager.getConnection(URL, USER, PASS);
+				Connection connection = DbConnection.getConnection();
 				Statement statement = connection.createStatement();
 			) {
 
